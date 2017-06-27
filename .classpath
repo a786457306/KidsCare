@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomcat-7.0.40/lib/json.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomcat-7.0.40/lib/mysql-connector-java-5.0.5-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/apache-tomcat-7.0.40/lib/ueditor-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/apache-tomcat-7.0.40/lib/junit-4.12.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
