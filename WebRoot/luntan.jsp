@@ -7,7 +7,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<<jsp:useBean id = "topicDao" class = "dao.TopicDao"/>
+<jsp:useBean id = "topicDao" class = "dao.TopicDao"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,6 +91,7 @@
 	<div class="contact w3-agileits">
 		<div class="container" style="text-align:center">
 			<h3 class="agileits-title1">Forum</h3>
+			<div class="addTopic"><strong><a href="/KidsCare/addTopic.jsp">发帖</a></strong></div>
 			<div class="contact-w3lsrow">
 				<div class="col-md-6">
 				<div id="luntan">
@@ -116,17 +117,12 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<!-- address -->
-
-			<!-- //address -->
 		</div>
 	</div>
-	<!-- //contact -->
 	<!-- footer -->
 	<div class="footer w3layouts">
 		<div class="container">
 			<div class="footer-agileinfo">
-
 				<div class="clearfix"></div>
 			</div>
 		</div>

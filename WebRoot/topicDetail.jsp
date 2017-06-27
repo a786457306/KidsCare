@@ -1,15 +1,15 @@
 <%@page import="entity.Reply"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8"%>
-<%@ page import = "entity.Topic" %>
+<%@ page import="entity.Topic"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 %>
-<jsp:useBean id = "topicDao" class = "dao.TopicDao"/>
-<jsp:useBean id = "replyDao" class = "dao.ReplyDao"/>
+<jsp:useBean id="topicDao" class="dao.TopicDao" />
+<jsp:useBean id="replyDao" class="dao.ReplyDao" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,15 +25,18 @@
 <script type="application/x-javascript">
 	
 	
+	
 			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 
 			function hideURLbar() { window.scrollTo(0, 1); }
 		
 
+
 </script>
-<link href="/KidsCare/css/bootstrap.css" type="text/css" rel="stylesheet"
+<link href="/KidsCare/css/bootstrap.css" type="text/css"
+	rel="stylesheet" media="all">
+<link href="/KidsCare/css/style.css" type="text/css" rel="stylesheet"
 	media="all">
-<link href="/KidsCare/css/style.css" type="text/css" rel="stylesheet" media="all">
 <link href="/KidsCare/css/font-awesome.css" rel="stylesheet">
 <script src="/KidsCare/js/jquery-2.2.3.min.js"></script>
 <link href="//fonts.googleapis.com/css?family=Parisienne"
@@ -95,46 +98,50 @@
 			<h3 class="agileits-title1">Topic</h3>
 			<div class="contact-w3lsrow">
 				<div class="col-md-6">
-				<div id="luntan">
-					<ul>
-				<%
-					Topic topic = new Topic();
-					String t = request.getParameter("tid");
-					int tid = Integer.parseInt(t);
-					topic = topicDao.selectTopic(tid);
-						
-				%>					
-						<li>
-						<strong><%=topic.getTitle() %></strong>
-						</li>
-				</ul>
-				电子邮箱：<%=topic.getEmail() %><br>
-				联系方式：<%=topic.getPhone() %><br>
-				具体内容：<%=topic.getContent() %>
-				<%
-					Reply reply = new Reply();
-					ArrayList<Reply> rlist = replyDao.selectReplyByTid(tid);
-					if(rlist != null){
-						for(int i = 0;i <rlist.size();i ++){
-						reply = rlist.get(i);
-				%>
-				<ul>
-					<li>
-					<%=reply.getRcontent() %>
-					</li>
-				</ul>
-				<%
-						}
-					}
-				%>
+					<div id="luntan">
+						<ul>
+							<%
+								Topic topic = new Topic();
+										String t = request.getParameter("tid");
+										int tid = Integer.parseInt(t);
+										topic = topicDao.selectTopic(tid);
+							%>
+							<li><strong><%=topic.getTitle()%></strong></li>
+						</ul>
+						电子邮箱：<%=topic.getEmail()%><br> 
+						联系方式：<%=topic.getPhone()%><br>
+						具体内容：<%=topic.getContent()%>
+
 					</div>
-					
 				</div>
+				
 				<div class="clearfix"></div>
 			</div>
-			<!-- address -->
-
-			<!-- //address -->
+			
+			<div class="reply">
+					<div class="reply-title">
+						回帖列表
+						<div class="addReply"><a href="addReply.jsp?tid=<%= tid %>">添加回复</a></div>
+					</div>
+					
+					<%
+							Reply reply = new Reply();
+									ArrayList<Reply> rlist = replyDao.selectReplyByTid(tid);
+									if(rlist != null){
+										for(int i = 0;i < rlist.size();i ++){
+										reply = rlist.get(i);
+						%>
+					<div class="reply-content">
+						
+							第<%=reply.getRid() %>条<br>
+							内容：<%=reply.getRcontent()%><br>
+						
+					</div>
+					<%
+							}
+									}
+						%>
+			</div>
 		</div>
 	</div>
 	<!-- //contact -->

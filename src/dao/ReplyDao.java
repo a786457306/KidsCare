@@ -23,8 +23,8 @@ public class ReplyDao {
 		conn = dbconn.getConnection();
 		String sql = "insert into reply(tid,rcontent)values(?,?)";
 		st = conn.prepareStatement(sql);
-		st.setInt(1, reply.getTid());
-		st.setString(2, reply.getRcontent());
+		st.setInt(1, tid);
+		st.setString(2, rcontent);
 		st.executeUpdate();
 	}
 	
@@ -38,6 +38,8 @@ public class ReplyDao {
 		st.setInt(1, tid);
 		rs = st.executeQuery();
 		while(rs.next()){
+			Reply reply = new Reply();
+			reply.setRid(rs.getInt("rid"));
 			reply.setTid(rs.getInt("tid"));
 			reply.setRcontent(rs.getString("rcontent"));
 			rlist.add(reply);

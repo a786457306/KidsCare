@@ -1,11 +1,15 @@
+<%@page import="entity.Reply"%>
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=utf-8"%>
+<%@ page import="entity.Topic"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 %>
+<jsp:useBean id="topicDao" class="dao.TopicDao" />
+<jsp:useBean id="replyDao" class="dao.ReplyDao" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,17 +25,20 @@
 <script type="application/x-javascript">
 	
 	
+	
 			addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 
 			function hideURLbar() { window.scrollTo(0, 1); }
 		
 
+
 </script>
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet"
+<link href="/KidsCare/css/bootstrap.css" type="text/css"
+	rel="stylesheet" media="all">
+<link href="/KidsCare/css/style.css" type="text/css" rel="stylesheet"
 	media="all">
-<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
-<link href="css/font-awesome.css" rel="stylesheet">
-<script src="js/jquery-2.2.3.min.js"></script>
+<link href="/KidsCare/css/font-awesome.css" rel="stylesheet">
+<script src="/KidsCare/js/jquery-2.2.3.min.js"></script>
 <link href="//fonts.googleapis.com/css?family=Parisienne"
 	rel="stylesheet">
 <link
@@ -40,6 +47,16 @@
 <link
 	href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
+
+<!--编辑器基本配置-->
+
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+
+<!--编辑器完整代码-->
+
+<script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.js">
+	
+</script>
 </head>
 
 <body>
@@ -88,15 +105,75 @@
 	</div>
 	<div class="contact w3-agileits">
 		<div class="container" style="text-align:center">
-			<h3 class="agileits-title1">Login</h3>
+			<h3 class="agileits-title1">Topic</h3>
 			<div class="contact-w3lsrow">
 				<div class="col-md-6">
-					<form action="<%=path %>/servlet/LoginServlet" method="post">
-						<input type="text" name="uname" placeholder="UserName" required><br>
-						<input type="password" name="upsw" placeholder="Password" required><br>
-						<input type="submit" value="login">
-					</form>
+					<div id="luntan">
+						<ul>
+							<%
+								Topic topic = new Topic();
+										String t = request.getParameter("tid");
+										int tid = Integer.parseInt(t);
+										topic = topicDao.selectTopic(tid);
+							%>
+							<li><strong><%=topic.getTitle()%></strong></li>
+						</ul>
+						电子邮箱：<%=topic.getEmail()%><br> 
+						联系方式：<%=topic.getPhone()%><br>
+						具体内容：<%=topic.getContent()%>
+
+					</div>
 				</div>
+				
+				<div class="clearfix"></div>
+			</div>
+			
+			<div class="reply">
+					<div class="addReply-title">添加回帖</div>
+					<div class="addReply-content">
+					<form action="<%=path %>/servlet/AddReplyServlet?tid=<%=tid %>" method="post">
+					<div>
+
+							<script id="editor" name="rcontent" type="text/plain"></script>
+
+						</div>
+
+						<script type="text/javascript">
+							//实例化编辑器
+
+							var ue = UE.getEditor('editor', {
+
+								autoHeightEnabled : true,
+
+								autoFloatEnabled : true,
+
+								initialFrameWidth : 900,
+
+								initialFrameHeight : 100
+
+							});
+						</script>
+						<input type="submit" value="提交">
+					</div>
+					</form>
+					<div class="reply-title">回帖列表</div>
+					<%
+							Reply reply = new Reply();
+									ArrayList<Reply> rlist = replyDao.selectReplyByTid(tid);
+									if(rlist != null){
+										for(int i = 0;i < rlist.size();i ++){
+										reply = rlist.get(i);
+						%>
+					<div class="reply-content">
+						
+							第<%=reply.getRid() %>条<br>
+							内容：<%=reply.getRcontent()%><br>
+						
+					</div>
+					<%
+							}
+									}
+						%>
 			</div>
 		</div>
 	</div>
@@ -105,6 +182,8 @@
 	<div class="footer w3layouts">
 		<div class="container">
 			<div class="footer-agileinfo">
+
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
@@ -121,8 +200,8 @@
 	</div>
 	<!-- //footer -->
 	<!-- start-smooth-scrolling -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="/KidsCare/js/move-top.js"></script>
+	<script type="text/javascript" src="/KidsCare/js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			$(".scroll").click(function(event) {
@@ -151,7 +230,7 @@
 
 		});
 	</script>
-	<script src="js/bootstrap.js"></script>
+	<script src="/KidsCare/js/bootstrap.js"></script>
 </body>
 
 </html>

@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.UserDao;
-import entity.User;
+import dao.ReplyDao;
+import dao.TopicDao;
+import entity.Reply;
+import entity.Topic;
 
-public class LoginServlet extends HttpServlet {
+public class AddReplyServlet extends HttpServlet {
 
 	/**
 	 * Destruction of the servlet. <br>
@@ -54,28 +56,22 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		String uname = request.getParameter("uname");
-		System.out.println("uname="+uname);
-		String upsw = request.getParameter("upsw");
-		System.out.println("upsw="+upsw);
-		User user = new User();
-		UserDao userDao = new UserDao();
+		String t = request.getParameter("tid");
+		int tid = Integer.parseInt(t);
+		System.out.println("tid="+tid);
+		String rcontent = request.getParameter("rcontent");
+		System.out.println("getrcontent"+rcontent);
+		Reply reply = new Reply();
+		reply.setTid(tid);
+		reply.setRcontent(rcontent);
+		ReplyDao replyDao = new ReplyDao();
 		try {
-			String upsw_true = userDao.selectUser(uname);
-			System.out.println("upsw_true="+upsw_true);
-			//通过username获得数据库中对应的密码，验证是否相等
-			if(upsw.equals(upsw_true)){
-				//存到session中
-				request.getSession().setAttribute("uname", uname);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}else{
-				out.println(upsw_true);
-				out.println("用户名或密码错误！");
-			}
+			replyDao.addReply(tid, rcontent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher("/topicDetail.jsp").forward(request, response);
 		
 		out.flush();
 		out.close();

@@ -94,8 +94,8 @@
 			<div class="contact-w3lsrow">
 				<div class="col-md-6">
 					<form action="<%=path %>/servlet/SigninServlet" method="post">
-						<input type="text" name="uname" placeholder="UserName" required>
-						<input type="text" name="upsw" placeholder="Password" required>
+						<input type="text" name="uname" placeholder="UserName" required><br>
+						<input type="password" name="upsw" placeholder="Password" required><br>
 						<input type="submit" value="sign in">
 					</form>
 				</div>

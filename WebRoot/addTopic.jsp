@@ -110,13 +110,13 @@
 	<!-- contact -->
 	<div class="contact w3-agileits">
 		<div class="container" style="text-align:center">
-			<h3 class="agileits-title1">Information</h3>
+			<h3 class="agileits-title1">Add Topic</h3>
 			<div class="contact-w3lsrow">
 				<div class="col-md-6">
 					<form action="<%=path %>/servlet/AddTopicServlet" method="post">
-						<input type="text" name="title" placeholder="Title" required>
-						<input type="text" name="email" placeholder="E-mail" required>
-						<input type="text" name="phone" placeholder="PhoneNumber" required>
+						<input type="text" name="title" placeholder="Title" required><br>
+						<input type="text" name="email" placeholder="E-mail" required><br>
+						<input type="text" name="phone" placeholder="PhoneNumber" required><br>
 						<div>
 
 							<script id="editor" name="content" type="text/plain"></script>

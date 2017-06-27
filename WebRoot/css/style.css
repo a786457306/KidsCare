@@ -881,7 +881,21 @@ h3.w3ltitle {
     border: none;
 }
 .contact input[type="text"] {
-    width: 100%;
+    width: 60%;
+    color: #999;
+    background: none;
+    outline: none;
+    font-size: 1em;
+    padding: .8em 1em;
+    margin-bottom: 1.5em;
+    border: solid 1px #999;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px; 
+}
+.contact input[type="password"] {
+    width: 40%;
     color: #999;
     background: none;
     outline: none;

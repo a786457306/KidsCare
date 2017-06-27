@@ -49,10 +49,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">					
 					<ul class="nav navbar-nav navbar-left">
-						<li class="active"><a href="index.jsp" class="link link--yaku"><span>首页</span></a></li>
-						<li><a href="luntan.jsp" class="link link--yaku"><span>论坛</span></a></li>						
-						<li><a href="login.jsp" class="link link--yaku"><span>登录</span></a></li>
-						<li><a href="signin.jsp" class="link link--yaku"><span>注册</span></a></li>
+						<li class="active"><a href="/KidsCare/index.jsp" class="link link--yaku"><span>首页</span></a></li>
+						<li><a href="/KidsCare/luntan.jsp" class="link link--yaku"><span>论坛</span></a></li>						
+						<li><a href="/KidsCare/login.jsp" class="link link--yaku"><span>登录</span></a></li>
+						<li><a href="/KidsCare/signin.jsp" class="link link--yaku"><span>注册</span></a></li>
 					</ul>		
 				</div><!-- //navigation --> 
 			</div>	

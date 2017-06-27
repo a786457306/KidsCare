@@ -34,7 +34,7 @@ public class UserDao {
 		st.setString(1, uname);
 		rs = st.executeQuery();
 		while(rs.next()){
-			upsw = user.getUpsw();
+			upsw = rs.getString("upsw");
 			System.out.println(upsw);
 		}
 		return upsw;

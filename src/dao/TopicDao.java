@@ -74,6 +74,7 @@ public class TopicDao {
 			topic.setUid(rs.getInt("uid"));
 			topic.setTitle(rs.getString("title"));
 			topic.setContent(rs.getString("content"));
+			topic.setEmail(rs.getString("email"));
 			topic.setPhone(rs.getString("phone"));
 		}
 		return topic; 
