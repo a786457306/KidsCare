@@ -72,7 +72,7 @@
 				<div class="collapse navbar-collapse navbar-right"
 					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-left">
-						<li class="active"><a href="index.jsp"
+						<li><a href="index.jsp"
 							class="link link--yaku"><span>首页</span></a></li>
 						<li><a href="luntan.jsp" class="link link--yaku"><span>论坛</span></a></li>
 						<li><a href="login.jsp" class="link link--yaku"><span>登录</span></a></li>
